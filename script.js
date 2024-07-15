@@ -10,9 +10,20 @@ function addTodo() {
   }
   input.value = "";
 }
+function editTodo(para) {
+  todos[para].completed = !todos[para].completed;
+  displayTodos();
+}
+function deleteTodo(para) {
+  todos.splice(para, 1);
+  displayTodos();
+}
 function displayTodos() {
+  ul.innerHTML = "";
   for (let i = 0; i < todos.length; i++) {
-    ul.innerHTML += `<li>${todos[i].text} ||   complited:${todos[i].completed}</li>
+    ul.innerHTML += `<div> <li>${todos[i].text} ||   ${
+      todos[i].completed ? "complited" : "active"
+    }</li><button onclick = editTodo(${i})> edit </button><button onclick = deleteTodo(${i})> delete </button></div>
         `;
   }
 }
